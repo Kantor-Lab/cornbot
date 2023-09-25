@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Leveraging Graph Representations for Tree Manipulation">
+  <meta name="keywords" content="agriculture, gnn, manipulation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Towards Robotic Tree Manipulation: Leveraging Graph Representations</title>
+
+
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <style>
+    /* CSS code for the navigation panel */
+    .sidebar {
+      width: 200px;
+      background-color: #333;
+      color: #fff;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      overflow: auto;
+    }
+
+    .sidebar nav ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .sidebar nav li {
+      padding: 10px;
+    }
+
+    .sidebar a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .sidebar a:hover {
+      background-color: #555;
+    }
+
+    /* CSS for the content area */
+    .content-container {
+      display: flex;
+      justify-content: center;
+      /* Center-align content horizontally */
+      margin-left: 250px;
+      /* Adjusted margin for the navigation panel */
+      padding: 20px;
+    }
+
+    .content {
+      max-width: 800px;
+      /* Set a maximum width for the content */
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation Panel -->
+  <div class="sidebar">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="robot.html">Robot Platform</a></li>
+        <li><a href="gripper.html">Gripper Design</a></li>
+        <li><a href="sensor.html">Nitrate Sensor</a></li>
+        <li><a href="detection.html">Stalk Detection</a></li>
+        <li><a href="motion.html">Arm Motion</a></li>
+      </ul>
+    </nav>
+  </div>
+
+
+
+  <!-- Title  block for author -->
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Towards Autonomous Crop Monitoring: Inserting Sensors in Cluttered
+              Environments</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="http://www.moonrobotics.org/">Moonyoung Lee</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="http://www.moonrobotics.org/">Aaron Berger</a><sup>2</sup>,</span>
+              <span class="author-block">
+                <a href="http://www.moonrobotics.org/">Dominic Guri</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="https://www.ri.cmu.edu/ri-faculty/oliver-kroemer/">Oliver Kroemer</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://www.ri.cmu.edu/ri-faculty/george-a-kantor/"> George Kantor</a><sup>1</sup>
+              </span>
+
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Carnegie Mellon University</span>
+              <span class="author-block"><sup>2</sup>Harvard University</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="https://kantor-lab.github.io/tree_gnn/"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://kantor-lab.github.io/tree_gnn/"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <!-- Video Link. -->
+                <span class="link-block">
+                  <a href="https://youtu.be/FGtdYFe0W9A" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                    </span>
+                    <span>Video</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/chjohnkim/tree_is_all_you_need"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <!-- Dataset Link. -->
+                <span class="link-block">
+                  <a href="https://labs.ri.cmu.edu/kantorlab/data-sets/"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="far fa-images"></i>
+                    </span>
+                    <span>Data</span>
+                  </a>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <!-- Motivation image -->
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <img src="./static/images/website_main.jpg" class="interpolation-image"
+          alt="Interpolate start reference image." />
+
+        <h2 class="subtitle has-text-centered">
+          <span class="dnerf"> Robot deployment in a cornfield at Curtiss Farm, Iowa (left). Robot arm identifying a
+            stalk to insert a sensor (middle). Sensor inserted into a single stalk (right).
+        </h2>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="hero is-light is-small">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns">
+          <div class="column">
+            <div class="dataset">
+              <video poster="" id="dataset" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/corn_motion_10sec.mp4" type="video/mp4">
+              </video>
+              <h2 class="subtitle has-text-centered">
+                <span class="dnerf"> Autonomously identifying a stalk and following a motion sequence to position the
+                  stalk inside the gripper.
+              </h2>
+            </div>
+          </div>
+          <div class="column">
+            <div class="contact-policy">
+              <video poster="" id="contact-policy" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/corn_insert_bottom_10sec.mp4" type="video/mp4">
+              </video>
+              <h2 class="subtitle has-text-centered">
+                <span class="dnerf"> Once the stalk is inside the gripper, the nitrate sensor is pushed into the stalk
+                  to monitor the crop.
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+  <section class="hero">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+
+              In this paper, we present a framework to learn
+              termination conditions using vibro-tactile signals. The learnt
+              conditions are used to monitor the process of a robot autonomously inserting a micro-sensor into corn
+              stalks for plant
+              health monitoring.
+
+            </p>
+            <p>
+              This task is challenging because inserting
+              a micro-sensor requires sub-centimeter precision but there
+              are high clutter and heavy occlusion in the environment that
+              deter visual accuracy.
+            </p>
+            <p>
+              Hence we leverage an array of contactmicrophones to implement a visuo-tactile controller that helps
+              reason about contacts with the robot gripper using contact classification and localization methods in the
+              loop. Utilizing multiple
+              sensor-modalities, we reduce the uncertainty of the estimated
+              stalk pose, and ultimately demonstrate how the overall sensorinsertion success rate on the field can be
+              improved.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!--/ Abstract. -->
+
+      <!-- Paper video. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full">
+          <h2 class="title is-3">Video</h2>
+          <div class="publication-video">
+            <iframe width="873" height="491" src="https://www.youtube.com/embed/q2oRwZlSUlE"
+              title="CMU AIIRA sensor insert pt 3" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+      <!--/ Paper video. -->
+    </div>
+  </section>
+
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+
+
+      <!-- Robot Platform  -->
+      <div class="content">
+        <h2 class="title is-3">Robot Platform</h2>
+        <p>
+          The AmigaRobot is a 4 wheel drive mobile platform with suite of sensors for navigation tasks that has been
+          added from the commerical Amiga product. Attached is a 6 DOF robot
+          arm with a custom gripper for sensor insertion tasks. In this section, we describe the hardware and software
+          diagram of our platform.
+        </p>
+
+        <p>
+          The platform is built upon the commercially available Amiga platform from Farm-NG by adding modular hardware
+          and software components to support autonomous navigation
+          through a field and the attachment of additional robotic components for a variety of manipulation and scouting
+          tasks. Added hardware components include general purpose computing (CPU and GPU), sensors for autonomous
+          navigation
+          (RTK GPS, lidar, IMU, depth cameras), and a power management system that provides regulated DC power at a
+          variety of
+          voltages designed to meet power requirement of anticipated robotic attachments such as the UFactory xArm
+          manipulator. 
+
+        </p>
+
+        <p>Click the following link to see more details on the robot platform: <a href="robot.html">Robot Platform</a> </p> 
+
+        <img src="./static/images/robot_platform.jpg" class="interpolation-image"
+          alt="Interpolate start reference image." />
+
+      </div>
+      <!--/ Robot Platform  -->
+
+
+
+      <!-- Gripper Design  -->
+      <div class="content">
+        <h2 class="title is-3">Gripper Design</h2>
+        <p>
+          Custom gripper for senor insertion. The micro-sensor
+          is fitted into a spring-loaded mount on a linear actuator that
+          centers with the corn stalk. The stereo-camera is used to
+          estimate the initial 3D pose, and the contact microphone
+          sensors are used for precise contact localization as well as
+          classification.
+        </p>
+
+
+        <img src="./static/images/gripper_diagramv2.jpg" class="interpolation-image"
+          alt="Interpolate start reference image." width="600" height="450"/>
+
+      </div>
+
+      <!--/ Gripper Design  -->
+
+
+    </div>
+  </section>
+
+
+
+
+
+
+  <!-- Additional Results -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Results for FWD model  -->
+      <div class="content">
+        <h2 class="title is-3">Forward Model</h2>
+        <p>
+          The forward model problem involves predicting the tree’s future state, based on its initial state and the
+          actions performed by the end-effector.
+        </p>
+
+        <div class="columns">
+          <div class="column">
+            <div class="dataset">
+              <video poster="" id="dataset" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/single_tree.mp4" type="video/mp4">
+              </video>
+
+            </div>
+            <p>
+              Initial tree (brown), contact node and trajectory (pink), predicted tree deformation (red), ground-truth
+              tree deformation (green).
+            </p>
+
+          </div>
+          <div class="column">
+            <div class="contact-policy">
+              <video poster="" id="contact-policy" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/multi_tree.mp4" type="video/mp4">
+              </video>
+              <p>
+                The forward model shown on varying tree structures and sizes. The forward model can generalize zero-shot
+                to unseen tree sizes outside the training set.
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </section>
+
+
+  <!-- Additional Results -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Results for FWD model  -->
+      <div class="content">
+        <h2 class="title is-3">Contact Policy</h2>
+        <p>
+          Given an initial state and target state of a tree, the contact policy outputs a set of candidate actions
+          represented as pernode trajectories and affordance scores.
+        </p>
+
+        <div class="columns">
+          <div class="column">
+            <div class="dataset">
+              <video poster="" id="dataset" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/robot_policy_new.mp4" type="video/mp4">
+              </video>
+
+            </div>
+            <p>
+              Initial tree state (brown) and the desired target tree state (green).
+              Given a set of candidate actions, we check feasibility and select the best action by iteratively applying
+              RRT* to each candiate.
+            </p>
+
+          </div>
+          <div class="column">
+            <div class="contact-policy">
+              <video poster="" id="contact-policy" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/robot_policy_multi.mp4" type="video/mp4">
+              </video>
+              <p>
+                The contact policy used to manipulate the tree to a desired target state. The contact policy is shown on
+                varying tree structures and sizes.
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </section>
+  </div>
+
+
+  <!-- <section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <div class="dataset">
+            <video poster="" id="dataset" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/trimmed_dataset.mp4" type="video/mp4">
+            </video>
+            <h2 class="subtitle has-text-centered">
+              <span class="dnerf"> Dataset collection process of the tree deformation in Issac Gym. 
+            </h2>
+          </div>
+        </div>
+        <div class="column">
+          <div class="contact-policy">
+            <video poster="" id="contact-policy" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/trimmed_contact.mp4" type="video/mp4">
+            </video>
+            <h2 class="subtitle has-text-centered">
+              <span class="dnerf"> Robot executing the learnt contact policy to move the tree into a target state. 
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <a class="icon-link" href="./static/videos/nerfies_paper.pdf">
+          <i class="fas fa-file-pdf"></i>
+        </a>
+        <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+            <p>
+              This site was created from Nerfie's template. Thanks to Keunhong Park.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
