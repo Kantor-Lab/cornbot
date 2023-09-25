@@ -334,6 +334,8 @@
           classification.
         </p>
 
+        <p>Click the following link to see more details on the gripper design: <a href="gripper.html">Gripper Design</a> </p> 
+
 
         <img src="./static/images/gripper_diagramv2.jpg" class="interpolation-image"
           alt="Interpolate start reference image." width="600" height="450"/>
@@ -351,43 +353,37 @@
 
 
 
-  <!-- Additional Results -->
+  <!-- Nitrate Sensor -->
   <section class="section">
     <div class="container is-max-desktop">
       <!-- Results for FWD model  -->
       <div class="content">
-        <h2 class="title is-3">Forward Model</h2>
+        <h2 class="title is-3">Nitrate Sensor</h2>
         <p>
-          The forward model problem involves predicting the tree’s future state, based on its initial state and the
-          actions performed by the end-effector.
+          This sensor is an all-solid-state miniature potentiometric
+          soil sensor that works in direct contact with soils to monitor
+          nitrate-nitrogen insoil solution with parts-per-million (ppm)
+          resolution. A working electrode isformed from a novel
+          nanocomposite of polyandmolybdenum disulfide coated on
+          a patterned Au electrodeand covered with a nitrate-selective
+          membrane using a robotic dispenser. ThePOT MoS2layer
+          acts as an ion-to-electron transducing layer with highhydrophobicity and redox properties.
         </p>
 
-        <div class="columns">
-          <div class="column">
-            <div class="dataset">
-              <video poster="" id="dataset" autoplay controls muted loop playsinline height="100%">
-                <source src="./static/videos/single_tree.mp4" type="video/mp4">
-              </video>
+        <p>
+          We utilize this nitrate sensor that converts nitrogen concentration to analog voltage. 
+          The readings are stored in a weather-proof datalogger containing an Arduino with SD card reader 
+          that can log data for over 30 days. Once the robot inserts the sensor in the stalk, we leave the sensor 
+          and the datalogger out in the field to monitor the stalk over it's growth phase.    
+        </p>
 
-            </div>
-            <p>
-              Initial tree (brown), contact node and trajectory (pink), predicted tree deformation (red), ground-truth
-              tree deformation (green).
-            </p>
+        <p>Click the following link to see more details on the nitrate sensor: <a href="gripper.html">Nitrate Sensor</a> </p> 
 
-          </div>
-          <div class="column">
-            <div class="contact-policy">
-              <video poster="" id="contact-policy" autoplay controls muted loop playsinline height="100%">
-                <source src="./static/videos/multi_tree.mp4" type="video/mp4">
-              </video>
-              <p>
-                The forward model shown on varying tree structures and sizes. The forward model can generalize zero-shot
-                to unseen tree sizes outside the training set.
-              </p>
+        <img src="./static/images/sensor_box_field.jpg" class="interpolation-image"
+          alt="Interpolate start reference image."/>
 
-            </div>
-          </div>
+        
+          
         </div>
       </div>
     </div>
@@ -396,44 +392,67 @@
   </section>
 
 
-  <!-- Additional Results -->
+  <!-- Stalk Detection -->
   <section class="section">
     <div class="container is-max-desktop">
       <!-- Results for FWD model  -->
       <div class="content">
-        <h2 class="title is-3">Contact Policy</h2>
+        <h2 class="title is-3">Stalk Detection</h2>
         <p>
-          Given an initial state and target state of a tree, the contact policy outputs a set of candidate actions
-          represented as pernode trajectories and affordance scores.
+          The goal of the vision system was to provide an optimal
+          grasping point along the X-Y plane (with the Z coordinate
+          being determined by the manipulator using vibrotactile feedback). The pipeline was built as a ROS Service with two
+          arguments: the number of image frames to process and a
+          timeout. In each frame, stalk masks are first extracted, and
+          then a best stalk for insertion is determined. After all frames
+          are processed, a final best stalk is chosen and returned.
+
         </p>
 
-        <div class="columns">
-          <div class="column">
-            <div class="dataset">
-              <video poster="" id="dataset" autoplay controls muted loop playsinline height="100%">
-                <source src="./static/videos/robot_policy_new.mp4" type="video/mp4">
-              </video>
+        <p>Click the following link to see more details on the stalk detection: <a href="gripper.html">Stalk Detection</a> </p> 
 
-            </div>
-            <p>
-              Initial tree state (brown) and the desired target tree state (green).
-              Given a set of candidate actions, we check feasibility and select the best action by iteratively applying
-              RRT* to each candiate.
-            </p>
+        <img src="./static/images/detection_mock.jpg" class="interpolation-image"
+          alt="Interpolate start reference image."/>
 
-          </div>
-          <div class="column">
-            <div class="contact-policy">
-              <video poster="" id="contact-policy" autoplay controls muted loop playsinline height="100%">
-                <source src="./static/videos/robot_policy_multi.mp4" type="video/mp4">
-              </video>
-              <p>
-                The contact policy used to manipulate the tree to a desired target state. The contact policy is shown on
-                varying tree structures and sizes.
-              </p>
+        </div>
+      </div>
+    </div>
 
-            </div>
-          </div>
+    </div>
+  </section>
+  </div>
+
+   <!-- Arm Motion -->
+   <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Results for FWD model  -->
+      <div class="content">
+        <h2 class="title is-3">Arm Motion</h2>
+        <p>
+          We utilize a 6 DoF robot arm from UFactory xArm with a custom gripper.
+          The entire autonomous pipeline is dictated by a finite state machine (FSM).
+          Given a keyboard input from the operator, the FSM kicks-off the sequence of scanning
+          with the camera, requesting stalk pose estimation, the xArm motion sequence to insert the sensor, 
+          and finally to deploy the datalogger box next to the corn.   
+        </p>
+
+        <p>
+          While there are no planner utilized to avoid external collision, we utilize the xArm's built-in API 
+          for IK solver and trajectory generation, that avoids self-collision paths. 
+          To get the gripper to the detect corn position, we carefully determine pre-selected waypoints that the arm can follow
+          to safely and reliably align the sensor to the stalk. 
+          
+          <p>Click the following link to see more details on the arm motion: <a href="gripper.html">Arm Motion</a> </p> 
+          
+          The flow diagram is shown below.
+
+        </p>
+
+        
+
+        <img src="./static/images/gripper_diagramv4.jpg" class="interpolation-image"
+          alt="Interpolate start reference image."/>
+
         </div>
       </div>
     </div>
