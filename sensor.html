@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Cornbot">
+  <meta name="keywords" content="agriculture, robotics, manipulation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sensor</title>
+
+
+
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/RI_logo.jpg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <style>
+    /* CSS code for the navigation panel */
+    .sidebar {
+      width: 150px;
+      background-color: #333;
+      color: #fff;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      overflow: auto;
+    }
+
+    .sidebar nav ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .sidebar nav li {
+      padding: 10px;
+    }
+
+    .sidebar a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .sidebar a:hover {
+      background-color: #555;
+    }
+
+    /* CSS for the content area */
+    .content-container {
+      display: flex;
+      justify-content: center;
+      /* Center-align content horizontally */
+      margin-left: 250px;
+      /* Adjusted margin for the navigation panel */
+      padding: 20px;
+    }
+
+    .content {
+      max-width: 800px;
+      /* Set a maximum width for the content */
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Navigation Panel -->
+<div class="sidebar">
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="robot.html">Robot Platform</a></li>
+      <li><a href="gripper.html">Gripper Design</a></li>
+      <li><a href="sensor.html">Nitrate Sensor</a></li>
+      <li><a href="detection.html">Stalk Detection</a></li>
+      <li><a href="motion.html">Arm Motion</a></li>
+      <li><a href="eval.html"> Evaluation</a></li>
+    </ul>
+  </nav>
+</div>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+
+
+    <!-- Sensor Overview-->
+      <div class="content">
+        <h2 class="title is-3">Sensor Overview</h2>
+        <p>
+          Overview of the nitrate sensor that was developed in Iowa State University.
+          Discussion of size, sensor reading, data logger electrical system, logging firmware.
+          Discussion of contact abrasion.
+          Discussion of manual insertion for comparison.
+        </p>
+
+      
+      </div>
+      <!--/ Sensor Overview  -->
+
+      
+
+      
+      <!-- Calibration-->
+      <div class="content">
+        <h2 class="title is-3">Calibration</h2>
+        <p>
+          Overview of the calibration process with different ppm concentration.
+        </p>
+
+        <img src="./static/images/calibration_setup.jpg" class="interpolation-image"
+          alt="Interpolate start reference image." />
+
+
+          <p>
+            Discussion of the calibration process for the plots below.
+          </p>
+
+          <div class="columns">
+            <div class="column">
+              <div class="dataset">
+                <img src="./static/images/calibration_plot.jpg" class="interpolation-image"
+                  alt="Interpolate start reference image." />
+                
+              </div>
+              <p>
+                Voltages at varying concentration  
+              </p>
+              
+            </div>
+            <div class="column">
+              <div class="contact-policy">
+                <img src="./static/images/calibration_plot_convert.jpg" class="interpolation-image"
+                  alt="Interpolate start reference image." />
+                <p>
+                  analog to ppm calibration 
+                </p>
+                
+              </div>
+            </div>
+          </div>
+        
+      </div>
+
+      <!--/ Calibration  -->
+
+      <!-- Data Logger Schematic-->
+      <div class="content">
+        <h2 class="title is-3">Data Logger Schematic and Firmware</h2>
+       
+
+            <p>
+              Overview of the analog amplifier circuit and the power management.
+              Specifications for battery life, current draw, sample frequency.
+              Discussion of the Arduino firmware for logging and power saving.
+            </p>
+    
+            <img src="./static/images/data_logger_improvements.jpg" class="interpolation-image"
+              alt="Interpolate start reference image." />
+
+      </div>
+      <!--/ Data Logger Schematic  -->
+
+      <!-- Deployment Box-->
+      <div class="content">
+        <h2 class="title is-3">Data Logger Deployment Box</h2>
+        <p>
+          Overview of the deploy mechanism that can be interfaced through PC or manual button.
+          Design to be sliding out away from the xArm. Designed with 4 bar link and latched to save power draw while inactive.
+          Wire management on coil setup to prevent tangling.
+        </p>
+
+        
+
+
+      </div>
+      <!--/ Deployment Box -->
+
+      <!-- Sensor Sleeve-->
+      <div class="content">
+        <h2 class="title is-3">Sensor Sleeve</h2>
+        <p>
+          Design of the Sensor Sleeve to protect the sensor membrane.
+        </p>
+
+      </div>
+      <!--/ Sensor Sleeve  -->
+
+
+      <!-- Field Data for Corn-->
+      <div class="content">
+        <h2 class="title is-3">Field Data for Corn</h2>
+        <p>
+          Discussion of the data collected for the 3 data logger over 30 days.
+          Observation of diurnal readings.
+          Discussion of sensor fall out as corn grows. 
+        </p>
+
+      </div>
+      <!--/ DField Data for Corn -->
+
+
+
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+  <footer class="footer">
+    <div class="container">
+
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+            <p>
+              This site was created from Nerfie's template. Thanks to Keunhong Park.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
