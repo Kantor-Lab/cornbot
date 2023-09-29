@@ -4,10 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="description" content="Cornbot">
-  <meta name="keywords" content="agriculture, robotics, manipulation">
+  <meta name="keywords" content="agriculture, robot, manipulation">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sensor</title>
-
 
 
 
@@ -93,6 +92,7 @@
 </div>
 
 
+
   <section class="section">
     <div class="container is-max-desktop">
 
@@ -157,22 +157,71 @@
 
       <!--/ Calibration  -->
 
-      <!-- Data Logger Schematic-->
+      <!-- Data Logger Design Improvements-->
       <div class="content">
-        <h2 class="title is-3">Data Logger Schematic and Firmware</h2>
+        <h2 class="title is-3">Data Logger Design Improvements</h2>
        
 
             <p>
-              Overview of the analog amplifier circuit and the power management.
+              Overview of design improvements for weather stability, easier interpretability, and battery management.
               Specifications for battery life, current draw, sample frequency.
-              Discussion of the Arduino firmware for logging and power saving.
+              
             </p>
     
             <img src="./static/images/data_logger_improvements.jpg" class="interpolation-image"
               alt="Interpolate start reference image." />
 
+
+            <p>
+              This version of the ebox is designed with the goal of (1) reducing the size of the ebox dimension, 
+              (2) improving the life span of one deployment, (3) improving the complexity of the electric circuit. 
+            </p>
+
+            <p>
+              The two rechargeable 18650 batteries allow the ebox to record data continuously for approximately 100 days. 
+              The added LED indicator shows the status of the box, where blinking every 5 seconds means the box is working normally, 
+              rapid blinking indicates an error with the firmware, and no lights on means out of battery or further errors with the firmware.
+            </p>
+
+
+            <img src="./static/images/data_logger_annotation.jpg" class="interpolation-image"
+              alt="Interpolate start reference image." />
+
+            <p>
+              We provide the <a href="https://a360.co/3Zw0kdc"> link to CAD file</a> as well as the <a href="https://docs.google.com/spreadsheets/d/1adWc0oiZkJU7So6OvRVGRn6781PzfJT5ogb6xGdbyY8/edit?usp=sharing"> link to Bill of Materials (BoM) file</a>.
+            </p>
+
+            <p>
+              This design contains 4 parts that are 3D printed. You can access the STL files through <a href="https://drive.google.com/drive/folders/1m5z-esbwBXfRqLY323CnRhIjU3Xabz_e?usp=sharing"> this link to STL files</a>
+              
+              Printing these parts with Onyx using the Markforged printer is recommended since PLA has the risk of melting in an enclosed environment in the field in summer.  
+              Two slots/holes need to be machined to the body of the ebox. The hole for LED should be a clearance hall of 8mm, and the hole for sensor FPC should be machined with a 0.25” diameter drill. 
+              For future improvements, suggested items are adding a shock-absorbing component, for example, printing the spacer with compliant materials like TPU could improve the PCB boards’ ability to survive when dropped from the deployment mechanism. 
+            </p>
+
+            <p>
+              This project is designed on Fusion360, if you would like access to the Fusion folder, please email xinyuwa3@andrew.cmu.edu
+
+            </p>
+
+            
+
       </div>
-      <!--/ Data Logger Schematic  -->
+      <!--/Data Logger Design Improvements -->
+
+
+      <!-- Data Logger Schematic-->
+      <div class="content">
+        <h2 class="title is-3">Data Logger Schematic</h2>
+        <p>
+          Overview of the analog amplifier circuit and the power management.
+          Discussion of the Arduino firmware for logging and power saving.
+        </p>
+
+      </div>
+      <!--/ Data Logger Schematic -->
+
+
 
       <!-- Deployment Box-->
       <div class="content">
@@ -183,11 +232,10 @@
           Wire management on coil setup to prevent tangling.
         </p>
 
-        
-
-
       </div>
       <!--/ Deployment Box -->
+
+
 
       <!-- Sensor Sleeve-->
       <div class="content">
@@ -208,6 +256,10 @@
           Observation of diurnal readings.
           Discussion of sensor fall out as corn grows. 
         </p>
+
+
+        <img src="./static/images/data_logger.jpg" class="interpolation-image"
+          alt="Interpolate start reference image." width="600" height="300" />
 
       </div>
       <!--/ DField Data for Corn -->

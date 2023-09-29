@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="description" content="Leveraging Graph Representations for Tree Manipulation">
-  <meta name="keywords" content="agriculture, gnn, manipulation">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Robot Platform</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Cornbot">
+    <meta name="keywords" content="agriculture, robotics, manipulation">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arm Motion</title>
 
 
 
@@ -102,60 +101,70 @@
       <div class="content">
         <h2 class="title is-3">Design Specification</h2>
         <p>
-          Field specification that guided the robot design
+          Overview of the motion controller.
+          The API used for Inverse Kinematics and Motion Planner.
+          Finite State Machine used.
         </p>
 
-        <img src="./static/images/field_specification.jpg" class="interpolation-image"
-          alt="Interpolate start reference image." />
+        <img src="./static/images/simulation.jpg" class="interpolation-image"
+              alt="Interpolate start reference image." />
+
+              
+
 
       </div>
       <!--/ Design Specification  -->
 
 
-      <!-- Hardware for the Mobile Base -->
+      <!-- xArm Platform -->
       <div class="content">
-        <h2 class="title is-3">Hardware for the Mobile Base</h2>
+        <h2 class="title is-3">xArm Platform</h2>
         <p>
-          The AmigaRobot is a 4 wheel drive mobile platform with suite of sensors for navigation tasks that has been
-          added from the commerical Amiga product. Attached is a 6 DOF robot
-          arm with a custom gripper for sensor insertion tasks. In this section, we describe the hardware and software
-          diagram of our platform.
+          Overview of its DOF and reachability. API usage.  
         </p>
 
-        <img src="./static/images/amiga_modification.jpg" class="interpolation-image"
-          alt="Interpolate start reference image." />
-
-        <p>
-            Bill of Materials can be found here:
-        </p>
-
-        <img src="./static/images/amiga_topview.jpg" class="interpolation-image"
-          alt="Interpolate start reference image." />
-        <p>
-            CAD file for the robot can be found here:
-        </p>
       </div>
-      <!--/ Hardware for the Mobile Base  -->
+      <!--/ xArm Platform -->
 
-      <!-- Electrical Diagram -->
+      <!-- Determining Arm Location through Simulation-->
       <div class="content">
-        <h2 class="title is-3">Electrical Diagram</h2>
+        <h2 class="title is-3">Determining Arm Location through Simulation</h2>
         <p>
-          Power and wiring diagram
+          Given the long cantilever gripper design, ensure that desired configuration of the robot platform
+          can reach both sides of the plant and with sufficient planar motions.
+
         </p>
 
-        <img src="./static/images/amiga_electronics.jpg" class="interpolation-image"
-          alt="Interpolate start reference image." />
+        <img src="./static/images/simulation_range.jpg" class="interpolation-image"
+              alt="Interpolate start reference image." />
 
-        <p>
-            Sensors and connectors
-        </p>
-
-        <img src="./static/images/amiga_electronics_diagram.jpg" class="interpolation-image"
-          alt="Interpolate start reference image." />
       </div>
-      <!--/ Electrical Diagram  -->
+      <!--/ Determining Arm Location through Simulation-->
 
+        <!-- Motion Controller -->
+        <div class="content">
+            <h2 class="title is-3">Motion Controller</h2>
+            <p>
+                Motion Controller using the built-in API libraries for IK solver and trajectory generation.
+                Since we don't do obstacle avoidance, manually set waypoints.
+            </p>
+
+        </div>
+        <!--/ Motion Controller-->
+
+        <!-- Finite State Machine -->
+        <div class="content">
+            <h2 class="title is-3">Finite State Machine</h2>
+            <p>
+            Overview of the FSM. 
+            </p>
+
+        </div>
+        <!--/ Finite State Machine-->
+
+
+        
+      </div>
   
 
 
