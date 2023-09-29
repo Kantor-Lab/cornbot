@@ -1,94 +1,94 @@
 <!DOCTYPE html>
 <html>
 
-    <meta charset="utf-8">
-    <meta name="description" content="Cornbot">
-    <meta name="keywords" content="agriculture, robotics, manipulation">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CV | Detection</title>
+<meta charset="utf-8">
+<meta name="description" content="Cornbot">
+<meta name="keywords" content="agriculture, robotics, manipulation">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CV | Detection</title>
 
 
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/RI_logo.jpg">
+<link rel="stylesheet" href="./static/css/bulma.min.css">
+<link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+<link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+<link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+<link rel="stylesheet" href="./static/css/index.css">
+<link rel="icon" href="./static/images/RI_logo.jpg">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script defer src="./static/js/fontawesome.all.min.js"></script>
+<script src="./static/js/bulma-carousel.min.js"></script>
+<script src="./static/js/bulma-slider.min.js"></script>
+<script src="./static/js/index.js"></script>
 
-  <style>
-    /* CSS code for the navigation panel */
-    .sidebar {
-      width: 150px;
-      background-color: #333;
-      color: #fff;
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100%;
-      overflow: auto;
-    }
+<style>
+  /* CSS code for the navigation panel */
+  .sidebar {
+    width: 150px;
+    background-color: #333;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: auto;
+  }
 
-    .sidebar nav ul {
-      list-style-type: none;
-      padding: 0;
-    }
+  .sidebar nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
 
-    .sidebar nav li {
-      padding: 10px;
-    }
+  .sidebar nav li {
+    padding: 10px;
+  }
 
-    .sidebar a {
-      color: #fff;
-      text-decoration: none;
-    }
+  .sidebar a {
+    color: #fff;
+    text-decoration: none;
+  }
 
-    .sidebar a:hover {
-      background-color: #555;
-    }
+  .sidebar a:hover {
+    background-color: #555;
+  }
 
-    /* CSS for the content area */
-    .content-container {
-      display: flex;
-      justify-content: center;
-      /* Center-align content horizontally */
-      margin-left: 250px;
-      /* Adjusted margin for the navigation panel */
-      padding: 20px;
-    }
+  /* CSS for the content area */
+  .content-container {
+    display: flex;
+    justify-content: center;
+    /* Center-align content horizontally */
+    margin-left: 250px;
+    /* Adjusted margin for the navigation panel */
+    padding: 20px;
+  }
 
-    .content {
-      max-width: 800px;
-      /* Set a maximum width for the content */
-    }
-  </style>
+  .content {
+    max-width: 800px;
+    /* Set a maximum width for the content */
+  }
+</style>
 </head>
 
 <body>
 
-<!-- Navigation Panel -->
-<div class="sidebar">
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="robot.html">Robot Platform</a></li>
-      <li><a href="gripper.html">Gripper Design</a></li>
-      <li><a href="sensor.html">Nitrate Sensor</a></li>
-      <li><a href="detection.html">Stalk Detection</a></li>
-      <li><a href="motion.html">Arm Motion</a></li>
-      <li><a href="eval.html"> Evaluation</a></li>
-    </ul>
-  </nav>
-</div>
+  <!-- Navigation Panel -->
+  <div class="sidebar">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="robot.html">Robot Platform</a></li>
+        <li><a href="gripper.html">Gripper Design</a></li>
+        <li><a href="sensor.html">Nitrate Sensor</a></li>
+        <li><a href="detection.html">Stalk Detection</a></li>
+        <li><a href="motion.html">Arm Motion</a></li>
+        <li><a href="eval.html"> Evaluation</a></li>
+      </ul>
+    </nav>
+  </div>
 
 
 
@@ -96,19 +96,33 @@
   <section class="section">
     <div class="container is-max-desktop">
 
-
-    <!-- Design Specification-->
+      <!-- Design Specification-->
       <div class="content">
         <h2 class="title is-3">Design Specification</h2>
         <p>
-          Summary of the detection specification (e.g accuracy in 2D, 3D, inference speed, training with sparse dataset).
-          Summary of 2D detection, 3D transformation, best stalk detection, rejecting out of reach stalk.
+          This pipeline is meant as a plug-and-play system, meaning it can be applied to varying similar agricultural
+          problems with few necessary changes.
+          Each step described below could be swapped out for alternatives based on the specific task at hand: we've
+          implemented some of these alternatives already.<br><br>
+
+          The stalk detection is packaged as a ROS node, which registers a ROS <a
+            href="http://wiki.ros.org/Services">service</a> (allowing a request-reply communication between two nodes),
+          which takes as parameters a number of images to process and a timeout, and returns the final stalk
+          information.<br><br>
+
+          Installation instructions and more usage documentation can be found in the code:
         </p>
 
-        <p>
-            This pipeline is meant as a plug-and-play system, meaning it can be applied to varying similar problems with little interference. 
-            Each part of the pipeline can be swapped out with different alternatives, which may work better under certain environment conditions, like camera field of view, ground plane visibility, ground plane smoothness, point cloud density and accuracy, etc.
-        </p>
+        <!-- Code Link. -->
+        <span class="link-block">
+          <a href="https://github.com/aaronzberger/CMU_Find_Stalk"
+            class="external-link button is-normal is-rounded is-dark">
+            <span class="icon">
+              <i class="fab fa-github"></i>
+            </span>
+            <span>Code</span>
+          </a>
+        </span>
 
       </div>
       <!--/ Design Specification  -->
@@ -117,10 +131,53 @@
       <!-- 2D Detection -->
       <div class="content">
         <h2 class="title is-3">2D Detection</h2>
+        <h3 class="title is-4">Dataset Collection and Labeling</h3>
         <p>
-          Description of the 2D detector, architecture used, input/output format.
-          Intuition of how well this works (robust in what conditions), when it fails...why does it fail?
+          Video data was collected in multiple regions of a corn field from a mobile phone, capturing diverse lighting,
+          weather conditions, viewpoints, and plant age. The phone was positioned low to the ground to mimic the
+          approximate viewpoint of the camera on the manipulator. One frame each second was then extracted from the
+          videos, and extraneous images were removed.</p>
+        <p>
+
+          The remaining 2667 images were labeled using a tool which uses Meta's Segment Anything model. Masks were drawn
+          for all stalks in the foreground, extending from the bottom of the visible stalk to the first occlusion by the
+          plant's leaves (which, for our purposes, marks the approximate top of the stalk). This produced 7681 stalk
+          instance annotations. The images were then split randomly into 80% training, 10% validation, and 10% testing
+          data.
         </p>
+
+      </div>
+      <section class="hero is-light is-small">
+        <div class="hero-body">
+          <div class="container">
+            <div class="dataset">
+              <video poster="" id="dataset" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/labeling.mp4" type="video/mp4">
+              </video>
+              <h2 class="subtitle has-text-centered">
+                <span class="dnerf"> Manually select points within the desired mask (blue) and outside the mask (red).
+                  Meta's Segment Anything model then produces a mask</span>
+              </h2>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="content">
+
+        <h3 class="title is-4" style="margin-top: 1.5rem;">Training</h3>
+        <p>
+          We use the <a href="https://arxiv.org/abs/1703.06870">Mask-R-CNN</a> architecture, implemented by Facebook AI
+          Research's <a hred="https://github.com/facebookresearch/detectron2">Detectron2</a> library with the <a
+            href="https://arxiv.org/abs/1512.03385">ResNet-50</a> backbone and <a
+            href="https://arxiv.org/abs/1612.03144">Feature Pyramid Networks</a> for segmentation. Using Detectron2's
+          benchmark model for this architecture, Mask-R-CNN was fine-tuned on our training data for 40000 iterations,
+          with a maximum learning rate of 0.00025 and the "WarmupMultiStepLR" scheduler, and a batch size of 4. Training
+          took 6.7 hours on an NVIDIA GeForce RTX 4080. Our trained model can be found here (TODO).
+        </p>
+        <p>
+          Model metrics are <a href="#eval_metric_title">below</a>.
+        </p>
+
 
       </div>
       <!--/ 2D Detection -->
@@ -129,91 +186,153 @@
       <div class="content">
         <h2 class="title is-3">Grasp Point Estimation</h2>
         <p>
-          Description of Pointcloud processing.
-          Description of why single-view partial pcloud is sufficient.
-          Transformation of world coordinate.
-          Intuition of where best grasp point is relative to the ground.
+        <h3 class="title is-4">Stalk Analysis</h2>
 
-        </p>
+          <p>
+            We treat stalks as 3D lines extending from some point on the ground to some point in space—this simplified
+            model is a tradeoff between 3D accuracy and computational complexity. Let's take a look at how a single
+            frame is processed (a frame has a color and depth image):
+          </p>
 
+          <p>
+            First, our segmentation model produces masks for the color image. The masks are then partitioned into
+            vertical <i>slices</i> (we found 10 pixels to be a sufficient vertical distance between slices to balance
+            performance and accuracy, but this hyper-parameter can be adjusted to account for varying stalk height). We
+            call the centerpoint of each slice its <i>feature point</i>. In each slice, the median depth measurement
+            among all points is extracted from the depth image and assigned to the slice's feature point.<br><br>
+
+            The 3D feature points are then transformed to the robot's base frame. RANSAC line fitting and Least Squares
+            for refinement are then run on the feature points of each stalk to get lines, which are then extended to the
+            world's ground plane. The grasping point of the stalk is simply the point along this line at the specified Z
+            height (a hyper-parameter) above the ground.
+          </p>
+
+      </div>
+      <!-- // Add a carousel of images here (from bulma-carousel) -->
+      <section class="hero is-light is-small">
+        <div class="hero-body">
+          <div class="container">
+            <div class="columns">
+              <div class="column">
+                <div class="dataset">
+                  <img src="./static/images/corn_input.png" alt="Input Image" width="100%">
+                  <h2 class="subtitle has-text-centered">
+                    <span class="dnerf">Input</span>
+                  </h2>
+                </div>
+              </div>
+              <div class="column">
+                <div class="dataset">
+                  <img src="./static/images/corn_detections.png" alt="Slices" width="100%">
+                  <h2 class="subtitle has-text-centered">
+                    <span class="dnerf">Detections</span>
+                  </h2>
+                </div>
+              </div>
+              <div class="column">
+                <div class="dataset">
+                  <img src="./static/images/corn_feature_points.png" alt="Feature Points" width="100%">
+                  <h2 class="subtitle has-text-centered">
+                    <span class="dnerf">Feature Points</span>
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div class="dataset">
+              <video poster="" id="dataset" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/rotating.mp4" type="video/mp4">
+              </video>
+              <h2 class="subtitle has-text-centered">
+                <span class="dnerf">3D feature points are fed to ransac and least squares for line fitting.</span>
+              </h2>
+            </div>
+          </div>
+      </section>
+
+      <div class="content" style="margin-top: 1.5rem;">
+        <h3 class="title is-4">Best Stalk Determination</h2>
+
+          <p>
+            We've now produced a number of 3D grasping points for each frame, so we need to decide which stalk is best
+            to grasp: <br><br>
+
+            Based on the manipulator dimensions and shape, stalks which are not graspable—those where another stalk is
+            blocking the predicted path the manipulator would take to insert the sensor, or where the manipulator
+            would not be able to reach—are eliminated. Stalks with unrealistic positions, caused by sporadic
+            segmentation output, misalignment between the depth map and image, or mis-measurements in the depth map,
+            are eliminated as well. The best stalk is then determined from among those remaining based on a heuristic
+            weighting function using the stalk's height and width, the confidence of the segmentation model's
+            prediction, and the distance of the stalk from the optimal grasping position for the arm. This weighting
+            function favors stalks which are more easily graspable and which have a higher chance for successful
+            insertion; the precise weighting of these factors could be adjusted for a different task based on the most
+            favorable conditions for the manipulator.
+          </p>
+
+          <h3 class="title is-4">Consensus Among Frames</h2>
+
+            <p>
+              This process is repeated for a number of frames, after which the best stalks from all frames are
+              clustered and the largest cluster is taken to be the consensus stalk. A representative stalk from this
+              cluster is then chosen, and the grasping point for this stalk is determined to be the final grasping
+              point.<br><br>
+
+              If no valid stalks are detected among any frame—which may occur if there are no stalks in view, or if
+              the stalks are too difficult to process—a <i>reposition</i> response is given, indicating to the robot
+              that the current viewpoint is insufficient to estimate a reasonable insertion pose.
+            </p>
       </div>
       <!--/ Grasp Point Estimation-->
 
-        <!-- Best Stalk Determination -->
-        <div class="content">
-            <h2 class="title is-3">Best Stalk Determination</h2>
-            <p>
-            Intuition of what's the best stalk and how to reject bad ones.
-            </p>
-
-        </div>
-        <!--/ Best Stalk Determination-->
-
-        <!-- Evaluation Metric -->
-        <div class="content">
-            <h2 class="title is-3">Evaluation Metric</h2>
-            <p>
-            Discuss how to measure our evaluation, and include a table or plot. 
-            </p>
-
-        </div>
-        <!--/ Best Stalk Determination-->
-
-
-
-        <!-- Dataset Labeling-->
+      <!-- Evaluation Metric -->
       <div class="content">
-        <h2 class="title is-3">Dataset Labeling</h2>
+        <h2 id="eval_metric_title" class="title is-3">Evaluation Metric</h2>
         <p>
-          Overview of the labeling process. Dataset size and format.
+          We determine the accuracy of our 2D model via standard AP and AR metrics. Our current segmentation model performance is shown below.
         </p>
 
-
-          <div class="columns">
-            <div class="column">
-              <div class="dataset">
-                <img src="./static/images/label1.jpg" class="interpolation-image"
-                  alt="Interpolate start reference image." />
-                
-              </div>
-              <p>
-                Manually selecting points with similar features.
-              </p>
-              
-            </div>
-            <div class="column">
-              <div class="contact-policy">
-                <img src="./static/images/label2.jpg" class="interpolation-image"
-                  alt="Interpolate start reference image." />
-                <p>
-                  Selected points to a bounding box. 
-                </p>
-                
-              </div>
-            </div>
-          </div>
-        
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth has-text-centered">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>AP</th>
+              <th>AP50</th>
+              <th>AP75</th>
+              <th>APs</th>
+              <th>APm</th>
+              <th>APl</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Bounding Box</td>
+              <td>45.07</td>
+              <td>72.42</td>
+              <td>47.77</td>
+              <td>18.17</td>
+              <td>31.32</td>
+              <td>59.40</td>
+            </tr>
+            <tr>
+              <td>Segmentation</td>
+              <td>47.71</td>
+              <td>79.82</td>
+              <td>51.05</td>
+              <td>4.33</td>
+              <td>26.18</td>
+              <td>56.68</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-  
 
+      <p>
+        We measure our 3D performance by comparing the predicted grasping point to the ground truth grasping point (we ignore error in height, since height is set as a hyper-parameter and affects the final insertion outcome less). Over 100 ROS service calls, we observe the following results:
+      </p>
 
-
-   
-
-
-
+      <img src="./static/images/3d_pose_error.png" alt="3D Error" width="100%">
 
     </div>
   </section>
-
-
-
-
-
-
-
-
-
 
   <footer class="footer">
     <div class="container">
