@@ -81,7 +81,7 @@
   <nav>
     <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="robot.html">Robot Platform</a></li>
+      <li><a href="robot.html">Mobile Platform</a></li>
       <li><a href="gripper.html">Gripper Design</a></li>
       <li><a href="sensor.html">Nitrate Sensor</a></li>
       <li><a href="detection.html">Stalk Detection</a></li>
@@ -101,10 +101,14 @@
       <div class="content">
         <h2 class="title is-3">Sensor Overview</h2>
         <p>
-          Overview of the nitrate sensor that was developed in Iowa State University.
-          Discussion of size, sensor reading, data logger electrical system, logging firmware.
-          Discussion of contact abrasion.
-          Discussion of manual insertion for comparison.
+
+          The custom nitrate sensor used to monitor corn stalks weree developed by our collaborators at Iowa State University. 
+          These micro sensors rely on electrochemical reaction from the custom solution applied on the surface of the PCB. This electrochemical reaction generates potential across the two pads, which we store into the data logging unit.
+          More details about the sensor can be found in <a href="https://pubs.acs.org/doi/full/10.1021/acsami.9b07120"> their research publication </a>. <br><br> 
+
+          To deploy these custom sensors, however, there were a lot of other electro mechanical projects that needed to be developed to support the deployment of these sensors.
+          As we were interested in monitoring the nitrogen concentration of a single stalk over its growth cycle, we needed to develop data logging unit that could last over a month. 
+          In addition, we had to create a deployment mechanism that would release these data loggers after the robot has inserted the sensor into the corn plant before driving to inspect a different stalk.  
         </p>
 
       
@@ -112,13 +116,12 @@
       <!--/ Sensor Overview  -->
 
       
-
-      
       <!-- Calibration-->
       <div class="content">
-        <h2 class="title is-3">Calibration</h2>
+        <h2 class="title is-3">Nitrogen to Voltage Calibration</h2>
         <p>
-          Overview of the calibration process with different ppm concentration.
+          These custom nitrate sensors require a calibration process to map nitrogen concentration (measured in PPM) to voltage. 
+          Each nitrate sensor leads to a unique mapping, which is why it's important to understand the calibration process, as well as understand how long it takes for a sensor reading to stabilze.
         </p>
 
         <img src="./static/images/calibration_setup.jpg" class="interpolation-image"
@@ -164,7 +167,7 @@
 
             <p>
               Overview of design improvements for weather stability, easier interpretability, and battery management.
-              Specifications for battery life, current draw, sample frequency.
+              Specifications for battery life, current draw, sample frequency. 
               
             </p>
     
@@ -215,7 +218,7 @@
         <h2 class="title is-3">Data Logger Schematic</h2>
         <p>
           Overview of the analog amplifier circuit and the power management.
-          Discussion of the Arduino firmware for logging and power saving.
+          Discussion of the Arduino firmware for logging and power saving. (To be updated).
         </p>
 
       </div>
@@ -227,43 +230,49 @@
       <div class="content">
         <h2 class="title is-3">Data Logger Deployment Box</h2>
         <p>
-          Overview of the deploy mechanism that can be interfaced through PC or manual button.
-          Design to be sliding out away from the xArm. Designed with 4 bar link and latched to save power draw while inactive.
-          Wire management on coil setup to prevent tangling.
+          We created a datalogger deployment mechanism that could release individual dataloggers to the ground near the corn once the sensor has been inserted. 
+          Each box in housed in a slot where the bottom lid could be opened with a four-bar link latched to a rotating servo. 
+          These latches can be opened/closed through either the serial commands on the PC or manually through the button pads on the side.   <br><br>
+
+
+          <img src="./static/images/ebox_deploy.jpg" class="interpolation-image"
+          alt="deploy box setup." width="600" height="300" />
+
+          There were couple design interations on the deployment box to improve the wiring release mechanism as well as power efficiency.
+          The first iteration had a wire management on coil setup to prevent tangling. However, although it did prevent tangling, the coil sometimes provided enough resistance so the datalogger would not fall out.
+          We ended up removing the wire management into a coil, and instead just isolated wires from crossing into different cartridges as a simple workaround.
+
+          Lastly, we modified the four bar link design with a latch mechanism to not draw power while its inactive. 
+          Without the latch, the servo would be drawing current to hold the boxes in place and would quickly deplete the external battery source. 
+
+          
         </p>
+        
+        <video poster="" id="contact-policy" autoplay controls muted loop playsinline height="100%">
+          <source src="./static/videos/Ebox Deploy X2-1.mp4" type="video/mp4">
+        </video>
+
+          <p>
+            The code for the Arduinos for the Datalogger and Deploy Box can be found in the fimrware section of this Github repo:
+          </p>
+        <!-- Code Link. -->
+        <span class="link-block">
+          <a href="https://github.com/MarkLee634/xArm_CMU_cornInsert_pkg"
+            class="external-link button is-normal is-rounded is-dark">
+            <span class="icon">
+              <i class="fab fa-github"></i>
+            </span>
+            <span>Code</span>
+          </a>
+        </span>
 
       </div>
       <!--/ Deployment Box -->
 
 
 
-      <!-- Sensor Sleeve-->
-      <div class="content">
-        <h2 class="title is-3">Sensor Sleeve</h2>
-        <p>
-          Design of the Sensor Sleeve to protect the sensor membrane.
-        </p>
 
-      </div>
-      <!--/ Sensor Sleeve  -->
-
-
-      <!-- Field Data for Corn-->
-      <div class="content">
-        <h2 class="title is-3">Field Data for Corn</h2>
-        <p>
-          Discussion of the data collected for the 3 data logger over 30 days.
-          Observation of diurnal readings.
-          Discussion of sensor fall out as corn grows. 
-        </p>
-
-
-        <img src="./static/images/data_logger.jpg" class="interpolation-image"
-          alt="Interpolate start reference image." width="600" height="300" />
-
-      </div>
-      <!--/ DField Data for Corn -->
-
+    
 
 
     </div>

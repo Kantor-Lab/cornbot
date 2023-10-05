@@ -80,7 +80,7 @@
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="robot.html">Robot Platform</a></li>
+        <li><a href="robot.html">Mobile Platform</a></li>
         <li><a href="gripper.html">Gripper Design</a></li>
         <li><a href="sensor.html">Nitrate Sensor</a></li>
         <li><a href="detection.html">Stalk Detection</a></li>
@@ -162,6 +162,15 @@
           </div>
         </div>
       </section>
+
+      <script>
+        // Get a reference to the video element
+        var video = document.getElementById("dataset");
+      
+        // Set the playbackRate to 2x
+        video.playbackRate = 2.0;
+      </script>
+      
       <div class="content">
 
         <h3 class="title is-4" style="margin-top: 1.5rem;">Training</h3>
@@ -283,56 +292,25 @@
       </div>
       <!--/ Grasp Point Estimation-->
 
-      <!-- Evaluation Metric -->
-      <div class="content">
-        <h2 id="eval_metric_title" class="title is-3">Evaluation Metric</h2>
-        <p>
-          We determine the accuracy of our 2D model via standard AP and AR metrics. Our current segmentation model performance is shown below.
-        </p>
 
-        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth has-text-centered">
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>AP</th>
-              <th>AP50</th>
-              <th>AP75</th>
-              <th>APs</th>
-              <th>APm</th>
-              <th>APl</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Bounding Box</td>
-              <td>45.07</td>
-              <td>72.42</td>
-              <td>47.77</td>
-              <td>18.17</td>
-              <td>31.32</td>
-              <td>59.40</td>
-            </tr>
-            <tr>
-              <td>Segmentation</td>
-              <td>47.71</td>
-              <td>79.82</td>
-              <td>51.05</td>
-              <td>4.33</td>
-              <td>26.18</td>
-              <td>56.68</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+          <!-- Qualitiative Evlauation in Mock Setup-->
+          <div class="content">
+            <h2 class="title is-3">Qualitative Evaluation with Mock Setup</h2>
+            <p>
+              With synthetic and real corn grown with the indoor greenhouse, we tested the detection pipeline.
+            </p>
+    
+            <img src="./static/images/detection_mock.jpg" class="interpolation-image"
+          alt="Interpolate start reference image."/>
 
-      <p>
-        We measure our 3D performance by comparing the predicted grasping point to the ground truth grasping point (we ignore error in height, since height is set as a hyper-parameter and affects the final insertion outcome less). Over 100 ROS service calls, we observe the following results:
-      </p>
+          <img src="./static/images/mock_setup2.jpg" alt="Total plot" width="100%">
+            
+          </div>
+          <!--/Discussion and Future Works -->
 
-      <img src="./static/images/3d_pose_error.png" alt="3D Error" width="100%">
+      
 
-    </div>
-  </section>
+     
 
   <footer class="footer">
     <div class="container">

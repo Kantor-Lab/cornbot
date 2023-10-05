@@ -6,7 +6,7 @@
   <meta name="description" content="Leveraging Graph Representations for Tree Manipulation">
   <meta name="keywords" content="agriculture, gnn, manipulation">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Robot Platform</title>
+  <title>Mobile Platform</title>
 
 
 
@@ -81,7 +81,7 @@
   <nav>
     <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="robot.html">Robot Platform</a></li>
+      <li><a href="robot.html">Mobile Platform</a></li>
       <li><a href="gripper.html">Gripper Design</a></li>
       <li><a href="sensor.html">Nitrate Sensor</a></li>
       <li><a href="detection.html">Stalk Detection</a></li>
@@ -102,7 +102,13 @@
       <div class="content">
         <h2 class="title is-3">Design Specification</h2>
         <p>
-          Field specification that guided the robot design
+          The robot platform dimension and configuration was heavily guided through the field specification of the corn farm. 
+          Given the typical row spacing between planted corns, we could determine the mobile base width to straddle two rows of corn. 
+          In addition, since inserting sensors in earlier stages of the plant cycle yield more valuable information to monitor, we could determine the height of the mobile platform to hover above the plants. <br><br>
+
+          For the arm position, being able to insert into both sides of the straddle plants is more efficient per single passing of the corn rows, 
+          so we could determine the arm to be in the center although that would eliminate some plants that are too close for the long gripper to be able to kinematically reach.  
+          Lastly, the arm mounting height was determined by the sensor insertion height, or the stalk region where sensors would provide most nitrate-rich information. 
         </p>
 
         <img src="./static/images/field_specification.jpg" class="interpolation-image"
@@ -126,13 +132,17 @@
           alt="Interpolate start reference image." />
 
         <p>
+            The modular hardware of the Amiga platform greatly accelerated the development of the custom Hefty platform. Much of the dimension modification could be done with modifying the bar extrusion for width and height.
+            This modular structure also provided ample mounting locations for various perception sensors that could be used for future navigation work.
             Bill of Materials can be found here:
         </p>
 
         <img src="./static/images/amiga_topview.jpg" class="interpolation-image"
           alt="Interpolate start reference image." />
         <p>
-            CAD file for the robot can be found here:
+            
+
+            <a href="https://cad.onshape.com/documents/047dccc9089fc60168a7d0b8/w/455c32205c43749f8fa3059a/e/6de53e9aeb50aa51c334c11e?renderMode=0&uiState=651db24a4c41696d795b09d4"> CAD file for the robot can be found here.</a> 
         </p>
       </div>
       <!--/ Hardware for the Mobile Base  -->
@@ -141,14 +151,15 @@
       <div class="content">
         <h2 class="title is-3">Electrical Diagram</h2>
         <p>
-          Power and wiring diagram
+          We also added the custom electronics box that contains the power regulators and processing unit for the robot in a weather-resistant enclosing. 
+          The power regulator is for the xArm DC power supply and power management system that monitors current draw and regulates various voltage levels. The PC used is a ITX motherboard with RTX 4070 GPU with a cooling unit. 
         </p>
 
         <img src="./static/images/amiga_electronics.jpg" class="interpolation-image"
           alt="Interpolate start reference image." />
 
         <p>
-            Sensors and connectors
+            The signal I/O connections to various electronics are outlined below.
         </p>
 
         <img src="./static/images/amiga_electronics_diagram.jpg" class="interpolation-image"

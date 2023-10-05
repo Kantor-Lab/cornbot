@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Cornbot">
+  <meta name="keywords" content="agriculture, robotics, manipulation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Evaluation</title>
+
+
+
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/RI_logo.jpg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <style>
+    /* CSS code for the navigation panel */
+    .sidebar {
+      width: 150px;
+      background-color: #333;
+      color: #fff;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      overflow: auto;
+    }
+
+    .sidebar nav ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .sidebar nav li {
+      padding: 10px;
+    }
+
+    .sidebar a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .sidebar a:hover {
+      background-color: #555;
+    }
+
+    /* CSS for the content area */
+    .content-container {
+      display: flex;
+      justify-content: center;
+      /* Center-align content horizontally */
+      margin-left: 250px;
+      /* Adjusted margin for the navigation panel */
+      padding: 20px;
+    }
+
+    .content {
+      max-width: 800px;
+      /* Set a maximum width for the content */
+    }
+  </style>
+</head>
+
+<body>
+<!-- Navigation Panel -->
+<div class="sidebar">
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="robot.html">Mobile Platform</a></li>
+      <li><a href="gripper.html">Gripper Design</a></li>
+      <li><a href="sensor.html">Nitrate Sensor</a></li>
+      <li><a href="detection.html">Stalk Detection</a></li>
+      <li><a href="motion.html">Arm Motion</a></li>
+      <li><a href="eval.html"> Evaluation</a></li>
+    </ul>
+  </nav>
+</div>
+
+
+
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+
+
+    <!-- Evaluation Overview-->
+      <div class="content">
+        <h2 class="title is-3">Evaluation Overview</h2>
+        <p>
+          Our goal was to deploy a robust platform that could precisely insert microsensors into corn stalks on an actual farm. 
+          The robot was deployed in Curtiss Farm in Ames, Iowa in July where our collaborators at Iowa State University have prepared
+          various sections of their corn fields with different types of corn stalks.    
+        </p>
+
+        <p>
+            We evaluate the perception pipeline as a subsystem first. And then we evaluate the overall autonomous insertion pipeline as a whole.
+            Finally, we discuss further insights obtained from the field and future work to address these challenges. 
+        </p>
+
+
+      </div>
+      <!--/ Evaluation Overview  -->
+
+
+  
+
+      <!-- Field Evaluation-->
+      <div class="content">
+        <h2 class="title is-3">Field Evaluation</h2>
+        <p>
+          Over the span of two days, we evaluated our autonomous insertion pipeline on 48 unique corn stalks to test robustness to outdoor conditions and varying corn stalks.
+          Each trial took about 3 minutes for the robot to perform and 1 minute for human evaluators to examine the insertion quality.   
+          To examine the insertion quality, we recorded the height of the sensor insertion from the ground, visually inspected whether the sensor was inserted deep enough to cover the entire sensor depth, 
+          and cut open the stalk after insertion to verify the sensor was actually in the pith. <br><br>
+          
+          The overall field evaluation we broke down into four items. Out of 48 total trials, the detection pipeline returned a valid stalk 45 times, 
+          the gripper could reach the targetted stalk 43 times, the sensor was inserted into the stalk 29 times, and the sensor was inserted in the pith 18 times.
+        </p>
+
+        <img src="./static/images/evaluation.jpg" alt="Total plot" width="100%">
+
+        
+      </div>
+      <!--/Field Evaluation -->
+
+
+       <!-- Evaluation Metric -->
+       <div class="content">
+        <h2 id="eval_metric_title" class="title is-3">Stalk Detection Evaluation</h2>
+        <p>
+          We determine the accuracy of our 2D model via standard AP and AR metrics. Our current segmentation model performance is shown below.
+        </p>
+
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth has-text-centered">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>AP</th>
+              <th>AP50</th>
+              <th>AP75</th>
+              <th>APs</th>
+              <th>APm</th>
+              <th>APl</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Bounding Box</td>
+              <td>45.07</td>
+              <td>72.42</td>
+              <td>47.77</td>
+              <td>18.17</td>
+              <td>31.32</td>
+              <td>59.40</td>
+            </tr>
+            <tr>
+              <td>Segmentation</td>
+              <td>47.71</td>
+              <td>79.82</td>
+              <td>51.05</td>
+              <td>4.33</td>
+              <td>26.18</td>
+              <td>56.68</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        We measure our 3D performance by comparing the predicted grasping point to the ground truth grasping point (we ignore error in height, since height is set as a hyper-parameter and affects the final insertion outcome less). Over 100 ROS service calls, we observe the following results:
+      </p>
+
+      <img src="./static/images/3d_pose_error.png" alt="3D Error" width="100%">
+
+ 
+
+
+      <!-- Field Data for Corn-->
+      <div class="content">
+        <h2 class="title is-3">Sensor and Datalogging Evaluation</h2>
+        <p>
+          It is important to validate that the data logging unit has the capacity to operate out in the field for numerous days.
+          To evaluate whether our data logging unit can log nitrate data without external solar power and just from the self-contained battery, 
+          we left the boxes that were deployed for in June and recollected them a month later in July as shown in the image below.
+          Although one of the logging units turned off, the other remained active throughout this period. <br><br>
+
+          One interesting observation speaking with the agrinomist at Iowa State Univeristy is that our sensor readings shows diurnal responses of the corn stalk.
+          As expected of plant behavior, nitrogen concentration in stalks differ in day and night, and we can observe this pattern throughout the one month trial of logging.
+        </p>
+
+
+        <img src="./static/images/nitrate_plot_timev2.jpg" alt="Total plot" width="100%">
+      </div>
+      <!--/ DField Data for Corn -->
+  
+
+      <!-- Mock Setup-->
+      <div class="content">
+        <h2 class="title is-3">Mock Setup</h2>
+        <p>
+          One of the challenges of working in agriculture robotics is that we are limited in numbers of times we can experiment in the field as the corn stalks grow once a year.
+          Therefore, it was imperative that we create mock environment setups that can guide our design iterations and confirm/reject our assumptions. <br><br>
+          
+          <img src="./static/images/mock_setup.jpg" alt="Total plot" width="100%">
+
+          In order to parallelize development with the mobile platform, we create a mock benchtop setup with just the robot arm in a similar configuration as it would be on the robot. 
+          This mock setup contains synthetic corn and some real corn plants that we grew in our indoor greenhouse (discussed below). 
+          The mock setup was mainly used to (1) guide the development of the arm motion sequence with the insertion mechanism and (2) test the robustness of the detection algorithm. 
+          To provide as much clutter information for the camera, we generated AI image of young corn stalks similar to what we'd expect in Iowa, and used that as a background poster of the mock setup.  
+        </p>
+
+        <img src="./static/images/mock_setup2.jpg" alt="Total plot" width="100%">
+        
+      </div>
+      <!--/Mock Setup -->
+
+      <!-- Greenhouse-->
+      <div class="content">
+        <h2 class="title is-3">Indoor Greenhouse for Plant Samples </h2>
+        <p>
+          To determine how thick and tough corn stalks are for the gripper design, it was imperative to get real corn samples. 
+          However, as no near farms plant corn before May, we had to grow corn ourselves so we could correctly specify the actuator force and gripper design based on empirical data.
+          To grow our own corn indoors off season, we created an indoor greenhouse that automatically provided LED light and water from a tub. 
+          With few trial and error, we improvised the greenhouse so that we could sustain the lighting, watering, temperature, airflow, and humidity condition to grow corn off season.
+
+          <a href="https://docs.google.com/document/d/12LwNBtxb9NS1ycyy14qfMsrBdCTR6xjKvhUMD0HofDQ/edit"> Detailed corn growth procedure can be found in this manual done in collabortaion with Virgina Tech</a>. 
+
+          
+        </p>
+
+        <img src="./static/images/greenhouse_growth.jpg" alt="Total plot" width="100%">
+
+        
+      </div>
+      <!--/Greenhouse -->
+
+      
+
+
+      <!-- Discussion and Future Works-->
+      <div class="content">
+        <h2 class="title is-3">Discussion and Future Works</h2>
+        <p>
+          To be updated in the paper.
+        </p>
+
+        
+      </div>
+      <!--/Discussion and Future Works -->
+
+
+   
+  
+
+
+
+   
+
+
+
+
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+  <footer class="footer">
+    <div class="container">
+
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+            <p>
+              This site was created from Nerfie's template. Thanks to Keunhong Park.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
