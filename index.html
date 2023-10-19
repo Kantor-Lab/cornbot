@@ -234,26 +234,26 @@
           <div class="content has-text-justified">
             <p>
 
-              In this paper, we present a framework to learn
-              termination conditions using vibro-tactile signals. The learnt
-              conditions are used to monitor the process of a robot autonomously inserting a micro-sensor into corn
-              stalks for plant
-              health monitoring.
+              Monitoring crop nutrient levels autonomously can
+              allow farmers to quickly adjust fertilizer usage in their fields
+              to maximize their harvest. Previous research has focused
+              on automating crop inspection through visual tracking of
+              growth, which can delay the detection of nutrient deficiencies
+              as visual symptoms may be slower to develop. Instead, we
+              present a contact-based phenotyping robot platform that can
+              autonomously insert nitrate sensors into corn stalks. This task
+              is challenging not only because of the varying field conditions
+              encountered on the farm but also because inserting sensors
+              requires sub-centimeter precision in an environment that has
+              high clutter and occlusion. To deal with these challenges, we
+              create a custom robot gripper with compliant mechanisms for
+              interacting with the cornstalks and develop a robust perceptionaction
+              pipeline to deploy sensors. Through our experimental
+              validation at a cornfield in Iowa, we demonstrate our robot
+              platform’s capability of autonomously inserting sensors into 48
+              cornstalks over a two-day trial period. Our research platform
+              is all open-sourced with a detailed appendix.
 
-            </p>
-            <p>
-              This task is challenging because inserting
-              a micro-sensor requires sub-centimeter precision but there
-              are high clutter and heavy occlusion in the environment that
-              deter visual accuracy.
-            </p>
-            <p>
-              Hence we leverage an array of contactmicrophones to implement a visuo-tactile controller that helps
-              reason about contacts with the robot gripper using contact classification and localization methods in the
-              loop. Utilizing multiple
-              sensor-modalities, we reduce the uncertainty of the estimated
-              stalk pose, and ultimately demonstrate how the overall sensorinsertion success rate on the field can be
-              improved.
             </p>
           </div>
         </div>
@@ -280,9 +280,77 @@
   <section class="section">
     <div class="container is-max-desktop">
 
+      <div class="columns is-centered">
+         <!-- Mobile Base -->
+        <div class="column">
+          <div class="content">
+            <h2 class="title is-4">Mobile Base</h2>
+            <p>
+              Our robot platform, Cornbot, is a four-wheel-drive mobile platform attached with a 6 DOF xArm robot arm that has custom end effector for sensor insertion tasks. 
+              This mobile base was built upon the commercially available Amiga from Farm-NG.
+            </p>
+            
+            
+            <img src="./static/images/robot_platform.jpg" class="interpolation-image"
+          alt="Interpolate start reference image." />
+
+          <p> <a href="robot.html">Link to see more details on the mobile base</a> </p> 
+
+          </div>
+        </div>
+        <!--/ Mobile Base -->
+
+          <!-- Gripper. -->
+        <div class="column">
+          <h2 class="title is-4">Gripper</h2>
+          <div class="columns is-centered">
+            <div class="column content">
+              <p>
+                We create a simple and compact gripper for inserting nitrate sensors. As there are high variation in stalk thickness and high clutter in the field,  
+                gripper has clever mechanical design such as funneled edges and springloaded compliance to improve alignment.
+              </p>
+              
+              <img src="./static/images/gripper_single.jpg" class="interpolation-image"
+              alt="Interpolate start reference image." />
+    
+              <p> <a href="gripper.html">Link to see more details on the gripper design</a> </p> 
+
+            </div>
+          </div>
+        </div>
+         <!-- Gripper. -->
+
+         <!-- Detection. -->
+         <div class="column">
+          <h2 class="title is-4">Detection</h2>
+          <div class="columns is-centered">
+            <div class="column content">
+              <p>
+                The pipeline is built as a ROS Service that returns a stalk 3D position given series of RGB-D frames. In each frame, stalk 2D masks are first extracted, and then a best
+stalk is determined from the 3D pointcloud. After all frames are processed, a best insertion position is determined by a consensus among frames.
+              </p>
+
+              <img src="./static/images/detection_single.jpg" class="interpolation-image"
+              alt="Interpolate start reference image." />
+    
+              <p> <a href="detection.html">Link to see more details on the stalk detection</a> </p> 
+
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <!--/ Detection. -->
+
+    
+    
+
 
       <!-- Robot Platform  -->
-      <div class="content">
+
+
+      <!-- <div class="content">
         <h2 class="title is-3">Robot Platform</h2>
         <p>
           The AmigaRobot is a 4 wheel drive mobile platform with suite of sensors for navigation tasks that has been
@@ -291,197 +359,50 @@
           diagram of our platform.
         </p>
 
-        <p>
-          The platform is built upon the commercially available Amiga platform from Farm-NG by adding modular hardware
-          and software components to support autonomous navigation
-          through a field and the attachment of additional robotic components for a variety of manipulation and scouting
-          tasks. Added hardware components include general purpose computing (CPU and GPU), sensors for autonomous
-          navigation
-          (RTK GPS, lidar, IMU, depth cameras), and a power management system that provides regulated DC power at a
-          variety of
-          voltages designed to meet power requirement of anticipated robotic attachments such as the UFactory xArm
-          manipulator. 
-
-        </p>
-
         <p>Click the following link to see more details on the robot platform: <a href="robot.html">Robot Platform</a> </p> 
 
         <img src="./static/images/robot_platform.jpg" class="interpolation-image"
           alt="Interpolate start reference image." />
 
-      </div>
+      </div> -->
       <!--/ Robot Platform  -->
 
 
 
-      <!-- Gripper Design  -->
+      <!-- Results  -->
       <div class="content">
-        <h2 class="title is-3">Gripper Design</h2>
+        <h2 class="title is-3">Evaluation on the Field</h2>
         <p>
-          Custom gripper for senor insertion. The micro-sensor
-          is fitted into a spring-loaded mount on a linear actuator that
-          centers with the corn stalk. The stereo-camera is used to
-          estimate the initial 3D pose, and the contact microphone
-          sensors are used for precise contact localization as well as
-          classification.
-        </p>
+          Through our experimental validation at a cornfield in Iowa, we demonstrate our robot platform’s capability of 
+          autonomously inserting sensors into 48 cornstalks over a two-day trial period. 
+          Each trial took about three minutes for the robot to perform and one minute for human evaluators to examine the insertion quality.<br><br>
 
-        <p>Click the following link to see more details on the gripper design: <a href="gripper.html">Gripper Design</a> </p> 
-
-
-        <img src="./static/images/gripper_diagramv2.jpg" class="interpolation-image"
-          alt="Interpolate start reference image." width="600" height="450"/>
-
-      </div>
-
-      <!--/ Gripper Design  -->
-
-
-    </div>
-  </section>
-
-
-
-
-
-
-  <!-- Nitrate Sensor -->
-  <section class="section">
-    <div class="container is-max-desktop">
-      <!-- Results for FWD model  -->
-      <div class="content">
-        <h2 class="title is-3">Nitrate Sensor</h2>
-        <p>
-          This sensor is an all-solid-state miniature potentiometric
-          soil sensor that works in direct contact with soils to monitor
-          nitrate-nitrogen insoil solution with parts-per-million (ppm)
-          resolution. A working electrode isformed from a novel
-          nanocomposite of polyandmolybdenum disulfide coated on
-          a patterned Au electrodeand covered with a nitrate-selective
-          membrane using a robotic dispenser. ThePOT MoS2layer
-          acts as an ion-to-electron transducing layer with highhydrophobicity and redox properties.
-        </p>
-
-        <p>
-          We utilize this nitrate sensor that converts nitrogen concentration to analog voltage. 
-          The readings are stored in a weather-proof datalogger containing an Arduino with SD card reader 
-          that can log data for over 30 days. Once the robot inserts the sensor in the stalk, we leave the sensor 
-          and the datalogger out in the field to monitor the stalk over it's growth phase.    
-        </p>
-
-        <p>Click the following link to see more details on the nitrate sensor: <a href="gripper.html">Nitrate Sensor</a> </p> 
-
-        <img src="./static/images/sensor_box_field.jpg" class="interpolation-image"
-          alt="Interpolate start reference image."/>
-
-        
+          <video poster="" id="dataset" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/Tile9.mp4" type="video/mp4">
+          </video>
           
-        </div>
-      </div>
-    </div>
+          <br>
+          To examine the insertion quality, we visually inspected whether the sensor was inserted deep enough to cover the entire
+          sensor pads, and cut open the stalk after insertion to verify
+          the sensor was actually in the pith region of the stalk.  Failure analysis of the 48 insertion trials is shown below. <br><br>
 
-    </div>
-  </section>
-
-
-  <!-- Stalk Detection -->
-  <section class="section">
-    <div class="container is-max-desktop">
-      <!-- Results for FWD model  -->
-      <div class="content">
-        <h2 class="title is-3">Stalk Detection</h2>
-        <p>
-          The goal of the vision system was to provide an optimal
-          grasping point along the X-Y plane (with the Z coordinate
-          being determined by the manipulator using vibrotactile feedback). The pipeline was built as a ROS Service with two
-          arguments: the number of image frames to process and a
-          timeout. In each frame, stalk masks are first extracted, and
-          then a best stalk for insertion is determined. After all frames
-          are processed, a final best stalk is chosen and returned.
-
-        </p>
-
-        <p>Click the following link to see more details on the stalk detection: <a href="gripper.html">Stalk Detection</a> </p> 
-
-        <img src="./static/images/detection_mock.jpg" class="interpolation-image"
-          alt="Interpolate start reference image."/>
-
-        </div>
-      </div>
-    </div>
-
-    </div>
-  </section>
-  </div>
-
-   <!-- Arm Motion -->
-   <section class="section">
-    <div class="container is-max-desktop">
-      <!-- Results for FWD model  -->
-      <div class="content">
-        <h2 class="title is-3">Arm Motion</h2>
-        <p>
-          We utilize a 6 DoF robot arm from UFactory xArm with a custom gripper.
-          The entire autonomous pipeline is dictated by a finite state machine (FSM).
-          Given a keyboard input from the operator, the FSM kicks-off the sequence of scanning
-          with the camera, requesting stalk pose estimation, the xArm motion sequence to insert the sensor, 
-          and finally to deploy the datalogger box next to the corn.   
-        </p>
-
-        <p>
-          While there are no planner utilized to avoid external collision, we utilize the xArm's built-in API 
-          for IK solver and trajectory generation, that avoids self-collision paths. 
-          To get the gripper to the detect corn position, we carefully determine pre-selected waypoints that the arm can follow
-          to safely and reliably align the sensor to the stalk. 
           
-          <p>Click the following link to see more details on the arm motion: <a href="gripper.html">Arm Motion</a> </p> 
-          
-          The flow diagram is shown below.
+
+          <img src="./static/images/evaluationv3.jpg" class="interpolation-image"
+          alt="Failure Analysis." />
 
         </p>
+
 
         
 
-        <img src="./static/images/FSM.jpg" class="interpolation-image"
-          alt="Interpolate start reference image."/>
-
-        </div>
       </div>
-    </div>
+      <!--/ Results -->
+
 
     </div>
   </section>
-  </div>
 
-
-  <!-- <section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div class="columns">
-        <div class="column">
-          <div class="dataset">
-            <video poster="" id="dataset" autoplay controls muted loop playsinline height="100%">
-              <source src="./static/videos/trimmed_dataset.mp4" type="video/mp4">
-            </video>
-            <h2 class="subtitle has-text-centered">
-              <span class="dnerf"> Dataset collection process of the tree deformation in Issac Gym. 
-            </h2>
-          </div>
-        </div>
-        <div class="column">
-          <div class="contact-policy">
-            <video poster="" id="contact-policy" autoplay controls muted loop playsinline height="100%">
-              <source src="./static/videos/trimmed_contact.mp4" type="video/mp4">
-            </video>
-            <h2 class="subtitle has-text-centered">
-              <span class="dnerf"> Robot executing the learnt contact policy to move the tree into a target state. 
-            </h2>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
 
 
 <footer class="footer">
