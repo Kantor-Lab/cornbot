@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<meta charset="utf-8">
+<meta name="description" content="Cornbot">
+<meta name="keywords" content="agriculture, robotics, manipulation">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dataset</title>
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+<link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+<link rel="stylesheet" href="./static/css/bulma.min.css">
+<link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+<link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+<link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+<link rel="stylesheet" href="./static/css/index.css">
+<link rel="icon" href="./static/images/RI_logo.jpg">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script defer src="./static/js/fontawesome.all.min.js"></script>
+<script src="./static/js/bulma-carousel.min.js"></script>
+<script src="./static/js/bulma-slider.min.js"></script>
+<script src="./static/js/index.js"></script>
+
+<style>
+    /* CSS code for the navigation panel */
+    .sidebar {
+        width: 150px;
+        background-color: #333;
+        color: #fff;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        overflow: auto;
+    }
+
+    .sidebar nav ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .sidebar nav li {
+        padding: 10px;
+    }
+
+    .sidebar a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .sidebar a:hover {
+        background-color: #555;
+    }
+
+    /* CSS for the content area */
+    .content-container {
+        display: flex;
+        justify-content: center;
+        /* Center-align content horizontally */
+        margin-left: 250px;
+        /* Adjusted margin for the navigation panel */
+        padding: 20px;
+    }
+
+    .content {
+        max-width: 800px;
+        /* Set a maximum width for the content */
+    }
+
+    #hierarchy {
+        font-family: FontAwesome;
+        width: 500px;
+    }
+
+    .foldercontainer,
+    .file,
+    .noitems {
+        display: block;
+        padding: 5px 5px 5px 50px;
+    }
+
+    .folder {
+        color: rgb(0, 0, 0);
+    }
+
+    .file {
+        color: rgb(0, 0, 0);
+    }
+
+    .folder,
+    .file {
+        cursor: pointer;
+    }
+
+    .noitems {
+        display: none;
+        pointer-events: none;
+    }
+
+    .folder:hover,
+    .file:hover {
+        background: yellow;
+    }
+
+    .folder:before,
+    .file:before {
+        padding-right: 10px;
+    }
+</style>
+<script>
+    var hierarchy = document.getElementById("hierarchy");
+    hierarchy.addEventListener("click", function (event) {
+        var elem = event.target;
+        if (elem.tagName.toLowerCase() == "span" && elem !== event.currentTarget) {
+            var type = elem.classList.contains("folder") ? "folder" : "file";
+            if (type == "folder") {
+                var isexpanded = elem.dataset.isexpanded == "true";
+                if (isexpanded) {
+                    elem.classList.remove("fa-folder-o");
+                    elem.classList.add("fa-folder");
+                }
+                else {
+                    elem.classList.remove("fa-folder");
+                    elem.classList.add("fa-folder-o");
+                }
+                elem.dataset.isexpanded = !isexpanded;
+
+                var toggleelems = [].slice.call(elem.parentElement.children);
+                var classnames = "file,foldercontainer,noitems".split(",");
+
+                toggleelems.forEach(function (element) {
+                    if (classnames.some(function (val) { return element.classList.contains(val); }))
+                        element.style.display = isexpanded ? "none" : "block";
+                });
+            }
+        }
+    });
+</script>
+</head>
+
+<body>
+
+    <!-- Navigation Panel -->
+    <div class="sidebar">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="robot.html">Mobile Platform</a></li>
+                <li><a href="gripper.html">Gripper Design</a></li>
+                <li><a href="sensor.html">Nitrate Sensor</a></li>
+                <li><a href="detection.html">Stalk Detection</a></li>
+                <li><a href="motion.html">Arm Motion</a></li>
+                <li><a href="eval.html"> Evaluation</a></li>
+            </ul>
+        </nav>
+    </div>
+
+
+
+
+    <section class="section">
+        <div class="container is-max-desktop">
+
+            <!-- Design Specification-->
+            <div class="content">
+                <h2 class="title is-3">Dataset</h2>
+                <p>
+                    See information about the dataset collection process and labeling on the <a
+                        href="detection.html">Stalk Detection</a> page.<br><br>
+
+                    The dataset consists of 2667 images, totalling 7681 stalk instances. The dataset is split into 80%
+                    training, 10% validation, and 10% testing data.
+                    Each annotation file (for each data split) is in COCO format.
+                </p>
+
+                <!-- Code Link. -->
+                <span class="link-block">
+                    <a href="/dataset.zip" download
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                            <i class="fa fa-download"></i>
+                        </span>
+                        <span>Download</span>
+                    </a>
+                </span>
+
+                <p>
+                    <br>The dataset directory structure is as follows:
+                </p>
+
+                <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+                    rel="stylesheet" />
+                <div id="hierarchy">
+                    <div class="foldercontainer">
+                        <span class="folder fa-folder-o" data-isexpanded="true">dataset</span>
+                        <div class="foldercontainer">
+                            <span class="folder fa-folder-o" data-isexpanded="true">test</span>
+                            <span class="file fa-file-code-o">annotations.json</span>
+                            <div class="foldercontainer">
+                                <span class="folder fa-folder">images</span>
+                                <span class="file fa-file-image-o">IMGS.jpg</span>
+                            </div>
+                        </div>
+
+                        <div class="foldercontainer">
+                            <span class="folder fa-folder-o" data-isexpanded="true">train</span>
+                            <span class="file fa-file-code-o">annotations.json</span>
+                            <div class="foldercontainer">
+                                <span class="folder fa-folder">images</span>
+                                <span class="file fa-file-image-o">IMGS.jpg</span>
+                            </div>
+                        </div>
+
+                        <div class="foldercontainer">
+                            <span class="folder fa-folder-o" data-isexpanded="true">val</span>
+                            <span class="file fa-file-code-o">annotations.json</span>
+                            <div class="foldercontainer">
+                                <span class="folder fa-folder">images</span>
+                                <span class="file fa-file-image-o">IMGS.jpg</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <footer class="footer">
+                    <div class="container">
+
+                        <div class="columns is-centered">
+                            <div class="column is-8">
+                                <div class="content">
+                                    <p>
+                                        This website is licensed under a <a rel="license"
+                                            href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                                            Commons Attribution-ShareAlike 4.0 International License</a>.
+                                    </p>
+                                    <p>
+                                        This site was created from Nerfie's template. Thanks to Keunhong Park.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+
+</body>
+
+</html>
